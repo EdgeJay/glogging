@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest -i",
+    "prepublish": "npm run build",
     "prepublishOnly": "npm run build",
     "build": "tsc --project tsconfig.release.json",
     "example": "ts-node examples/example.ts",
