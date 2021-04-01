@@ -65,7 +65,7 @@ export function LoggedMethod(
   metadata: IDecoratorMetadata,
   options?: ITransactionLoggingOptions
 ): MethodDecorator {
-  return function (target: any, key, descriptor: PropertyDescriptor) {
+  return function LoggedWrapperMethod(target: any, key, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
     if (typeof originalMethod !== 'function') {
