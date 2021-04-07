@@ -22,11 +22,6 @@
   "bugs": {
     "url": "https://github.com/dyihoon90/glogging/issues"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run build && npm t"
-    }
-  },
   "homepage": "https://github.com/dyihoon90/glogging#readme",
   "dependencies": {
     "@js-joda/core": "^3.2.0",
