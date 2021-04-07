@@ -18,6 +18,8 @@ export class GLoggerAuditLogger {
   constructor(glogger: GLogger) {
     this.glogger = glogger;
   }
+
+  /*
   logHttpSuccess(
     message: string,
     { req, res }: IReqRes,
@@ -39,7 +41,17 @@ export class GLoggerAuditLogger {
     this.glogger.info(message, { ...logData });
     return this;
   }
+  */
 
+  logHttpSuccess(
+    message: string,
+    { req, res }: IReqRes,
+    { trxName, trxModule, filename }: IHTTPTransactionMetadata
+  ): this {
+    return this;
+  }
+
+  /*
   logHttpFailure(
     error: Error,
     { req, res }: IReqRes,
@@ -66,7 +78,17 @@ export class GLoggerAuditLogger {
     this.glogger.warn(error.name, error, { ...logData });
     return this;
   }
+  */
 
+  logHttpFailure(
+    error: Error,
+    { req, res }: IReqRes,
+    { trxName, trxModule, filename }: IHTTPTransactionMetadata
+  ): this {
+    return this;
+  }
+
+  /*
   logTransactionSuccess(
     message: string,
     { req }: IReq,
@@ -94,7 +116,19 @@ export class GLoggerAuditLogger {
     this.glogger.info(message, { ...logData });
     return this;
   }
+  */
 
+  logTransactionSuccess(
+    message: string,
+    { req }: IReq,
+    { trxCategory, trxName, trxModule, filename }: ITransactionMetadata,
+    trxStartTimeInEpochMillis: number,
+    result?: Record<string, any>
+  ): this {
+    return this;
+  }
+
+  /*
   logTransactionFailure(
     { req }: IReq,
     { trxCategory, trxName, trxModule, filename }: ITransactionMetadata,
@@ -124,6 +158,16 @@ export class GLoggerAuditLogger {
     } else {
       this.glogger.warn('error', undefined, { ...logData, additionalInfo: { ...logData.additionalInfo, error } });
     }
+    return this;
+  }
+  */
+
+  logTransactionFailure(
+    { req }: IReq,
+    { trxCategory, trxName, trxModule, filename }: ITransactionMetadata,
+    trxStartTimeInEpochMillis: number,
+    error: Error | string | unknown
+  ): this {
     return this;
   }
 }
