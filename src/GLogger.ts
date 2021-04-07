@@ -77,10 +77,12 @@ export class GLogger {
    * If it contains a `level` property, that is ignored
    */
   debug(message: string, data?: Record<string, any>): GLogger {
+    /*
     if (this.verboseMode) {
       logVerbose('debug', message, data);
     }
     this.logger.debug(message, data);
+    */
     return this;
   }
 
@@ -95,10 +97,12 @@ export class GLogger {
    * If it contains a `level` property, that is ignored
    */
   info(message: string, data?: Record<string, any>): GLogger {
+    /*
     if (this.verboseMode) {
       logVerbose('info', message, data);
     }
     this.logger.info(message, data);
+    */
     return this;
   }
 
