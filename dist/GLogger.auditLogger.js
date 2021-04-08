@@ -31,6 +31,7 @@ var GLoggerAuditLogger = /** @class */ (function () {
     GLoggerAuditLogger.prototype.logHttpSuccess = function (message, _a, _b) {
         var req = _a.req, res = _a.res;
         var trxName = _b.trxName, trxModule = _b.trxModule, filename = _b.filename;
+        console.log("logHttpSuccess: " + message + " (winston.info skipped)");
         return this;
     };
     /*
@@ -64,6 +65,7 @@ var GLoggerAuditLogger = /** @class */ (function () {
     GLoggerAuditLogger.prototype.logHttpFailure = function (error, _a, _b) {
         var req = _a.req, res = _a.res;
         var trxName = _b.trxName, trxModule = _b.trxModule, filename = _b.filename;
+        console.log("logHttpFailure: " + error.message + " (winston.warn skipped)");
         return this;
     };
     /*
@@ -98,6 +100,7 @@ var GLoggerAuditLogger = /** @class */ (function () {
     GLoggerAuditLogger.prototype.logTransactionSuccess = function (message, _a, _b, trxStartTimeInEpochMillis, result) {
         var req = _a.req;
         var trxCategory = _b.trxCategory, trxName = _b.trxName, trxModule = _b.trxModule, filename = _b.filename;
+        console.log("logTransactionSuccess: " + message + " (winston.info skipped)");
         return this;
     };
     /*
@@ -136,6 +139,15 @@ var GLoggerAuditLogger = /** @class */ (function () {
     GLoggerAuditLogger.prototype.logTransactionFailure = function (_a, _b, trxStartTimeInEpochMillis, error) {
         var req = _a.req;
         var trxCategory = _b.trxCategory, trxName = _b.trxName, trxModule = _b.trxModule, filename = _b.filename;
+        if (error instanceof Error) {
+            console.log("logTransactionFailure: " + error.message + " (winston.warn skipped)");
+        }
+        else if (typeof error === 'string') {
+            console.log("logTransactionFailure: " + error + " (winston.warn skipped)");
+        }
+        else {
+            console.log("logTransactionFailure (winston.warn skipped)");
+        }
         return this;
     };
     return GLoggerAuditLogger;
