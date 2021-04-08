@@ -48,6 +48,7 @@ export class GLoggerAuditLogger {
     { req, res }: IReqRes,
     { trxName, trxModule, filename }: IHTTPTransactionMetadata
   ): this {
+    console.log(`logHttpSuccess: ${message} (winston.info skipped)`);
     return this;
   }
 
@@ -85,6 +86,7 @@ export class GLoggerAuditLogger {
     { req, res }: IReqRes,
     { trxName, trxModule, filename }: IHTTPTransactionMetadata
   ): this {
+    console.log(`logHttpFailure: ${error.message} (winston.warn skipped)`);
     return this;
   }
 
@@ -125,6 +127,7 @@ export class GLoggerAuditLogger {
     trxStartTimeInEpochMillis: number,
     result?: Record<string, any>
   ): this {
+    console.log(`logTransactionSuccess: ${message} (winston.info skipped)`);
     return this;
   }
 
@@ -168,6 +171,13 @@ export class GLoggerAuditLogger {
     trxStartTimeInEpochMillis: number,
     error: Error | string | unknown
   ): this {
+    if (error instanceof Error) {
+      console.log(`logTransactionFailure: ${error.message} (winston.warn skipped)`);
+    } else if (typeof error === 'string') {
+      console.log(`logTransactionFailure: ${error} (winston.warn skipped)`);
+    } else {
+      console.log(`logTransactionFailure (winston.warn skipped)`);
+    }
     return this;
   }
 }
